@@ -1,0 +1,190 @@
+﻿@model DomainClass.Coures
+
+@{
+    ViewBag.Title = " - " + Model.Name ; 
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+}
+
+<main>
+    <!-- بنر بالای سایت شروع-->
+    <section class="breadcrumb-area bg-default" data-background="../../assets/img/breadcrumb/breadcrumb-bg.jpg">
+        <img src="../../assets/img/breadcrumb/shape-1.png" alt="" class="breadcrumb-shape">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <h2 class="breadcrumb-title">@Model.Name</h2>
+                        <div class="breadcrumb-list">
+                            <a href="@Url.Action("Index","Home")">صفحه اصلی</a>
+                            <a href="@Url.Action("Courses","Home")">دوره ها</a>
+                            <span>@Model.Name</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بنر بالای سایت پایان-->
+    <!-- جزییات دوره شروع-->
+    <section class="course_details-area pt-120 pb-60">
+        <div class="container">
+            <div class="course_details-img">
+                <img src="~/Areas/assets/CoursesImage/@Model.Image" alt="@Model.Name - آموزشگاه کوروش" style="max-height:492px;width:100%;min-height:590px">
+            </div>
+            <div class="row">
+                <div class="col-xl-8 col-lg-8">
+                    <div class="course_details-wrap mb-55">
+                        <div class="course_details-top mb-60">
+                            <h3 class="course_details-title">@Model.Name</h3>
+                            <div class="course_details-meta">
+                                <div class="course_details-meta-left">
+                                    <div class="course_details-author">
+                                        <div class="course_details-author-img">
+                                            <img style="border-radius:100%" src="~/Areas/assets/ImageProfileUser/@Model.Teacher.User.Image" alt="@Model.Teacher.User.FullName">
+                                        </div>
+                                        <div class="course_details-author-info">
+                                            <span>@Model.Teacher.User.Role.Title</span>
+                                            <h5><a href="@Url.Action("Course","Home",new { Id=Model.Id,Name=Model.Name })">@Model.Teacher.User.FullName</a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="course_details-category">
+                                        <span>دسته بندی ها</span>
+                                        <h5><a href="@Url.Action("Category","Home",new { Id=Model.CategoryId })">@Model.Category.Name</a></h5>
+                                    </div>
+                                    <div class="course_details-rating">
+                                        <span>بازدید @Model.Seen</span>
+                                        <ul>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="course_details-meta-right">
+                                    <a href="@Url.Action("GetCourse/"+Model.Id,"Home")" class="theme-btn theme-btn-medium">ثبت نام در دوره</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course_details-tab-button">
+                            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"><i class="fa-solid fa-bookmark"></i><span>جزییات دوره</span></button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="fa-thin fa-user"></i><span>درباره استاد</span></button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="course_details-tab-content">
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                                    <div class="course_details-content">
+                                        <h4 class="course_details-content-title mb-15">@Model.Name</h4>
+                                        @Html.Raw(Model.Descreption)
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+                                    <div class="course_details-instructor">
+                                        <div class="course_details-thumbnail w_img">
+                                            <img src="~/Areas/assets/ImageProfileUser/@Model.Teacher.User.Image" alt="@Model.Teacher.User.FullName - آموزشگاه فناوری اطلاعات کوروش" style="width:100%;max-width:200px;max-height:220px;min-width:200px;min-height:220px;border-radius:10px">
+                                        </div>
+                                        <div class="course_details-author-content">
+                                            <h6 class="course_details-author-title">@Model.Teacher.User.FullName</h6>
+                                            <span class="course_details-author-subtitle">@Model.Teacher.Education</span>
+                                            <p>@Model.Teacher.Description</p>
+                                            <div class="contact-social">
+                                                <span>Social Media</span>
+                                                <ul>
+                                                    <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                                                    <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                                    <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                                    <li><a href="#"><i class="fa-brands fa-behance"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4">
+                    <div class="course_details-sidebar mb-60">
+                        <div class="course_details-price">
+                            @if (Model.Price != 0)
+                            {
+                                <del>@Utility.GeneralUtility.ToToman(Model.OldPrice)</del>
+                                <h2>@Utility.GeneralUtility.ToToman(Model.Price)</h2>
+                            }
+                            else
+                            {
+                                <h2>رایگان</h2>
+                            }
+                        </div>
+                        <div class="course_details-list">
+                            <ul>
+                                <li>
+                                    <span><i class="fa-thin fa-clock"></i>مدت زمان</span>
+                                    <span>@Model.HoursCout</span>
+                                </li>
+                                <li>
+                                    <span><i class="fa-thin fa-user-group"></i>دانش آموزان</span>
+                                    <span>@Model.Students.Count</span>
+                                </li>
+                                <li>
+                                    <span><i class="fa-thin fa-tags"></i>دسته بندی</span>
+                                    <span>@Model.Category.Name</span>
+                                </li>
+                                <li>
+                                    <span><i class="fa-thin fa-language"></i>زبان</span>
+                                    <span>فارسی</span>
+                                </li>
+                                <li>
+                                    <span><i class="fa-thin fa-user"></i>مدرس</span>
+                                    <span>@Model.Teacher.User.FullName</span>
+                                </li>
+                                <li>
+                                    <span><i class="fa-thin fa-eye"></i>تعداد بازدید</span>
+                                    <span>@Model.Seen</span>
+                                </li>
+                            </ul>
+                            <div class="course_details-sidebar-btn">
+                                <a href="@Url.Action("GetCourse/"+Model.Id,"Home")" class="course-btn theme-btn theme-btn-big">همین الان ثبت نام کن</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- جزییات دوره پایان-->
+
+    @Html.Action("RndCourse", "Home", new {Id=Model.CategoryId})
+    <!-- بنر پایین شروع-->
+    <div class="cta-area">
+        <div class="container">
+            <div class="cta-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-content mb-30 mb-lg-0">
+                            <span class="cta-subtitle">دانلود برنامه</span>
+                            <h2 class="cta-title">
+                                آیا برای شروع کار خود آماده اید
+                                دوره آنلاین؟
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-button">
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-apple"></i>فروشگاه اپل</a>
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-google-play"></i>فروشگاه Play</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- بنر پایین پایان-->
+</main>

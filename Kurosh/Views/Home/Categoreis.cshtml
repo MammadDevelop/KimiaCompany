@@ -1,0 +1,96 @@
+﻿@model IEnumerable<DomainClass.Category>
+
+@{
+    ViewBag.Title = " _ دسته بندی ها";
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+}
+
+<main>
+    <!-- بنر بالای سایت شروع-->
+    <section class="breadcrumb-area bg-default" data-background="../../assets/img/breadcrumb/breadcrumb-bg.jpg">
+        <img src="../../assets/img/breadcrumb/shape-1.png" alt="" class="breadcrumb-shape">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <h2 class="breadcrumb-title">دسته بندی ما</h2>
+                        <div class="breadcrumb-list">
+                            <a href="@Url.Action("Index","Home")">صفحه اصلی</a>
+                            <span>دسته بندی ما</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بنر بالای سایت پایان-->
+    <!-- بخش معلم شروع-->
+    <section class="innerPage_teacher-area pt-120 pb-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-8 col-md-12 mb-30">
+                    <div class="h2_teacher-section bg-default" data-background="../../assets/img/teacher/2/bg.jpg">
+                        <div class="section-area-2">
+                            <h2 class="section-title mb-30">
+                                دسته بندی های<br>آموزشی
+                                <span>کوروش <img src="~/assets/img/banner/2/line.png" alt=""></span>
+                            </h2>
+                        </div>
+                        <div class="h2_teacher-button">
+                            <a href="@Url.Action("Courses","Home")" class="theme-btn theme-btn-medium teacher-btn">مشاهده همه دوره ها</a>
+                        </div>
+                    </div>
+                </div>
+                @foreach (var item in Model)
+                {
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="swiper-slide">
+                            <div class="category-item">
+                                <div class="category-img">
+                                    <a href="@Url.Action("Category/"+item.Id,"Home")"><img src="~/Areas/assets/CategoryImage/@item.image" alt="@item.Name _ آموزشگاه کوروش"></a>
+                                </div>
+                                <div class="category-content">
+                                    <h5><a href="@Url.Action("Category/"+item.Id,"Home")"> @item.Name</a></h5>
+                                    <p>
+                                        <a href="@Url.Action("Category/"+item.Id,"Home")">
+                                            @item.Coures.Count مورد
+                                            <i class="fa-light fa-arrow-left"></i>
+                                            <i class="fa-light fa-arrow-left"></i>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </section>
+    <!-- بخش معلم پایان-->
+    <!-- بنر پایین شروع-->
+    <div class="cta-area">
+        <div class="container">
+            <div class="cta-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-content mb-30 mb-lg-0">
+                            <span class="cta-subtitle">دانلود برنامه</span>
+                            <h2 class="cta-title">
+                                آیا برای شروع کار خود آماده اید
+                                دوره آنلاین؟
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-button">
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-apple"></i>فروشگاه اپل</a>
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-google-play"></i>فروشگاه Play</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- بنر پایین پایان-->
+</main>

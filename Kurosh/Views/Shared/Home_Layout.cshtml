@@ -1,0 +1,207 @@
+﻿
+@{
+    Layout = null;
+    var db = new DataLayer.KuroshDB();
+    var set = db.SettingRepository.Get().SingleOrDefault();
+    var cats = db.CategoryRepository.Get();
+
+}
+
+<!Doctype html>
+<html class="no-js" lang="zxx">
+
+<!-- Mirrored from themephi.net/template/eduan/eduan/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Apr 2024 12:33:55 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>آموزشگاه کوروش @ViewBag.Title</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <!-- CSS here -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/animate.min.css">
+    <link rel="stylesheet" href="~/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/assets/css/odometer.min.css">
+    <link rel="stylesheet" href="~/assets/css/nice-select.css">
+    <link rel="stylesheet" href="~/assets/css/meanmenu.css">
+    <link rel="stylesheet" href="~/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="~/assets/css/main.css">
+</head>
+
+<body>
+    <!-- sidebar-information-area-start -->
+    <div class="sidebar-info side-info">
+        <div class="sidebar-logo-wrapper mb-25">
+            <div class="row align-items-center">
+                <div class="col-xl-6 col-8">
+                    <div class="sidebar-logo">
+                        <a href="@Url.Action("Index","Home")"><img src="~/assets/img/logo/logo-white.png" alt="logo-img"></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-4">
+                    <div class="sidebar-close-wrapper text-end">
+                        <button class="sidebar-close side-info-close"><i class="fal fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-menu-wrapper fix">
+            <div class="mobile-menu"></div>
+        </div>
+    </div>
+    <div class="offcanvas-overlay"></div>
+    <!-- sidebar-information-area-end -->
+    <!-- header area start -->
+    <header>
+        <div class="header-area header-sticky">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-8 col-lg-7 col-md-7 col-7">
+                        <div class="header-left">
+                            <div class="header-logo">
+                                <a href="@Url.Action("Index","Home")"><img src="~/assets/img/logo/logo.png" alt=""></a>
+                            </div>
+                            <nav class="main-menu mobile-menu d-none d-xl-block" id="mobile-menu">
+                                <ul>
+                                    <li>
+                                        <a href="@Url.Action("Index","Home")">صفحه اصلی</a>
+
+                                    </li>
+                                    <li class="menu-has-child">
+                                        <a href="@Url.Action("Courses","Home")">دوره های آموزشی</a>
+                                        <ul class="submenu">
+                                            @foreach (var item in cats)
+                                            {
+                                                <li class="m-0"><a href="@Url.Action("Category/"+item.Id,"Home")">@item.Name</a></li>
+                                                
+                                            }
+                                        </ul>
+                                    </li>
+                                    <li class="menu-has-child">
+                                        <a href="@Url.Action("Blogs","Home")">مقالات</a>
+                                    </li>
+                                    <li><a href="@Url.Action("About","Home")">درباره ما</a></li>
+                                    <li><a href="@Url.Action("Contact","Home")">تماس با ما</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-5 col-md-5 col-5">
+                        <div class="header-right">
+                            <div class="header-search d-none d-lg-block">
+                                <form action="@Url.Action("Search","Home")">
+                                    <input name="KeyWord" type="text" placeholder="جستجو.....">
+                                    <button type="submit" class="header-search-btn"><i class="fa-thin fa-magnifying-glass"></i></button>
+                                </form>
+                            </div>
+                            <div class="header-btn d-none d-sm-block">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a href="@Url.Action("Login","Home")" class="header-btn theme-btn theme-btn-medium">پنل کاربری @User.Identity.Name</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Register","Home")" class="header-btn theme-btn theme-btn-medium">اکنون ثبت نام کنید</a>
+                                }
+
+                            </div>
+                            <div class="header-menu-bar d-xl-none ml-10">
+                                <span class="header-menu-bar-icon side-toggle">
+                                    <i class="fa-light fa-bars"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header area end -->
+
+
+    @RenderBody()
+
+
+    <!-- footer area start -->
+    <footer class="footer-area">
+        <div class="footer-top pt-240 pb-55">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-xl-5 col-lg-7 col-md-7 col-sm-12">
+                        <div class="footer-widget mb-40">
+                            <div class="footer-logo">
+                                <a href="@Url.Action("Index","Home")"><img src="~/assets/img/logo/logo.png" alt=""></a>
+                            </div>
+                            <p class="footer-widget-text mb-35">
+                               @set.Summery
+                            </p>
+                            <div class="footer-social">
+                                <ul>
+                                    <li><a href="https://instagram.com/@set.InstaId"><i class="fa-brands fa-instagram"></i></a></li>
+                                    <li><a href="https://api.whatsapp.com/send?phone=@set.WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></li>
+                                    <li><a href="https://t.me/@set.TelegramId"><i class="fa-brands fa-telegram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-5 col-md-5 col-sm-6 d-flex justify-content-xl-center">
+                        <div class="footer-widget mb-40">
+                            <h5 class="footer-widget-title">لینک های مفید</h5>
+                            <div class="footer-widget-list">
+                                <ul>
+                                    <li><a href="@Url.Action("About","Home")">درباره کوروش</a></li>
+                                    <li><a href="@Url.Action("Contact","Home")">تماس با ما</a></li>
+                                    <li><a href="@Url.Action("Courses","Home")">ثبت نام در دوره ها</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-5 col-md-5 col-sm-6 d-flex justify-content-xl-center order-md-4 order-xl-3">
+                        <div class="footer-widget mb-40">
+                            <h5 class="footer-widget-title">دسته بندی ها</h5>
+                            <div class="footer-widget-list">
+                                <ul>
+                                    @foreach (var item in cats)
+                                    {
+                                        <li><a href="@Url.Action("Category/"+item.Id,"Home")">@item.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="copyright-text">
+                            <p>طراحی شده با عشق توسط Mammad.Develop</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer area end -->
+    <!-- JS here -->
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/swiper-bundle.min.js"></script>
+    <script src="~/assets/js/jquery.meanmenu.min.js"></script>
+    <script src="~/assets/js/wow.min.js"></script>
+    <script src="~/assets/js/jquery.nice-select.min.js"></script>
+    <script src="~/assets/js/jquery.scrollUp.min.js"></script>
+    <script src="~/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets/js/odometer.min.js"></script>
+    <script src="~/assets/js/appear.min.js"></script>
+    <script src="~/assets/js/main.js"></script>
+</body>
+
+<!-- Mirrored from themephi.net/template/eduan/eduan/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Apr 2024 12:34:27 GMT -->
+</html>

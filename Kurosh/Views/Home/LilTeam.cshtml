@@ -1,0 +1,56 @@
+﻿@model List<DomainClass.Teacher>
+
+
+<!-- بخش معلم شروع-->
+<section class="h8_teacher-area pt-110 pb-115">
+    <div class="container">
+        <div class="row align-items-center mb-30">
+            <div class="col-xl-8 col-lg-8 col-md-8">
+                <div class="section-area-8 mb-20">
+                    <span class="section-subtitle">اساتید </span>
+                    <h2 class="section-title mb-0">اساتید آموزشگاه فناوری اطلاعات کوروش</h2>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4">
+                <div class="h8_teacher-navigation mb-30">
+                    <div class="h8_teacher-next">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 7H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7 1L13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="h8_teacher-prev">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 7H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="teacher-active-8 swiper">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model)
+                {
+
+                    <div class="swiper-slide">
+                        <div class="h8_teacher-item">
+                            <div class="h8_teacher-img w_img">
+                                <a href="@Url.Action("Teacher","Home",new {Id=item.Id,Name=Utility.GeneralUtility.ClearUrl(item.User.FullName)})">
+                                    <img src="~/Areas//assets/ImageProfileUser/@item.User.Image" alt="@item.User.FullName - کوروش">
+                                </a>
+                            </div>
+                            <div class="h8_teacher-content">
+                                <h5 class="h8_teacher-content-title">
+                                    <a href="@Url.Action("Teacher","Home",new {Id=item.Id,Name=Utility.GeneralUtility.ClearUrl(item.User.FullName)})">@item.User.FullName</a>
+                                </h5>
+                                <span>@item.Education</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- بخش معلم پایان-->

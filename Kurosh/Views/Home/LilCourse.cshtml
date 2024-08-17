@@ -1,0 +1,190 @@
+﻿@model IEnumerable<DomainClass.Category>
+
+@{ int i = 0;}
+<!-- بخش دوره ها شروع-->
+<section class="course-area">
+    <div class="container-fluid container-custom-1 p-0">
+        <div class="course-wrap pt-120 pb-90">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="course-section-area text-center">
+                            <div class="section-area section-area-top">
+                                <span class="section-subtitle">دوره ها</span>
+                                <h2 class="section-title mb-20"> دوره های جدید کوروش</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="course-tab">
+                            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                @foreach (var item in Model)
+                                {
+                                    if (i == 0)
+                                    {
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#cat-@item.Id" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                                                @item.Name
+                                            </button>
+                                        </li>
+                                        i++;
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#cat-@item.Id" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
+                                                @item.Name
+                                            </button>
+                                        </li>
+                                    }
+                                }
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @{ i = 0;}
+                <div class="course-inner">
+                    <div class="tab-content" id="pills-tabContent">
+                        @foreach (var item in Model)
+                        {
+                            if (i == 0)
+                            {
+                                <div class="tab-pane fade show active" id="cat-@item.Id" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                                    <div class="row">
+                                        @foreach (var course in item.Coures)
+                                        {
+                                            <div class="col-xxl-3 col-lg-4 col-md-6">
+                                                <div class="course-item mb-30">
+                                                    <div class="course-img">
+                                                        <img src="~/Areas/assets/CoursesImage/@course.Image" alt="@course.Name - آموزشگاه کوروش">
+                                                    </div>
+                                                    <div class="course-content">
+                                                        <div class="course-content-top">
+                                                            <div class="course-top-icon"><img src="~/assets/img/favicon.png" alt=" آموزشگاه کوروش"></div>
+                                                            <div class="course-top-title">
+                                                                <h6>اموزشگاه کوروش</h6>
+                                                            </div>
+                                                        </div>
+                                                        <h5 class="course-content-title"><a href="@Url.Action("Course", "Home", new {Id=course.Id,Name=course.Name})">@course.Name</a></h5>
+                                                        <div class="course-content-bottom">
+                                                            <div class="course-bottom-info">
+                                                                <span><i class="fa-thin fa-timer"></i>@course.HoursCout </span>
+                                                                <span><i class="fa-thin fa-user-group"></i>@course.Students.Count</span>
+                                                            </div>
+                                                            <div class="course-bottom-price">
+                                                                <del>@Utility.GeneralUtility.ToToman(course.OldPrice)</del><br />
+                                                                <span>
+
+                                                                    @Utility.GeneralUtility.ToToman(course.Price)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="course-hover-content">
+                                                        <div class="course-hover-content-top">
+                                                            <div class="course-top-icon"><img src="~/assets/img/course/1/v1.png" alt=""></div>
+                                                            <div class="course-top-title">
+                                                                <h6>@course.Name</h6>
+                                                            </div>
+                                                        </div>
+                                                        <h5 class="course-hover-content-title"><a href="@Url.Action("Course", "Home", new {Id=course.Id,Name=course.Name})">@course.Name</a></h5>
+                                                        <p class="course-hover-content-text">@course.Summery</p>
+                                                        <ul class="course-hover-content-list">
+                                                            <li><i class="fa-thin fa-check"></i>مدت دوره : @course.HoursCout ساعت</li>
+                                                            <li><i class="fa-thin fa-check"></i>@course.Teacher.User.FullName</li>
+                                                            <li><i class="fa-thin fa-check"></i>حوزه : @course.Category.Name</li>
+                                                        </ul>
+                                                        <div class="course-hover-content-btn">
+                                                            <div class="course-hover-cart-btn">
+                                                                <a href="@Url.Action("Course", "Home", new {Id=course.Id,Name=course.Name})" class="theme-btn course-btn">شرکت در دوره</a>
+                                                            </div>
+                                                            <div class="course-hover-fav-btn">
+                                                                <a href="@Url.Action("Course", "Home", new {Id=course.Id,Name=course.Name})"><i class="fa-thin fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                                i++;
+                            }
+                            else
+                            {
+                                <div class="tab-pane fade " id="cat-@item.Id" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                                    <div class="row">
+                                        @foreach (var course in item.Coures)
+                                        {
+                                            <div class="col-xxl-3 col-lg-4 col-md-6">
+                                                <div class="course-item mb-30">
+                                                    <div class="course-img">
+                                                        <img src="~/Areas/assets/CoursesImage/@course.Image" alt="@course.Name - آموزشگاه کوروش">
+                                                    </div>
+                                                    <div class="course-content">
+                                                        <div class="course-content-top">
+                                                            <div class="course-top-icon"><img src="~/assets/img/favicon.png" alt=" آموزشگاه کوروش"></div>
+                                                            <div class="course-top-title">
+                                                                <h6>اموزشگاه کوروش</h6>
+                                                            </div>
+                                                        </div>
+                                                        <h5 class="course-content-title"><a href="@Url.Action("Course", "Home", new {Id=course.Id,Name=course.Name})">@course.Name</a></h5>
+                                                        <div class="course-content-bottom">
+                                                            <div class="course-bottom-info">
+                                                                <span><i class="fa-thin fa-times-circle"></i>@course.HoursCout </span>
+                                                                <span><i class="fa-thin fa-user-group"></i>@course.Students.Count</span>
+                                                            </div>
+                                                            <div class="course-bottom-price">
+                                                                <del>@Utility.GeneralUtility.ToToman(course.OldPrice)</del><br />
+                                                                <span>
+
+                                                                    @Utility.GeneralUtility.ToToman(course.Price)
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="course-hover-content">
+                                                        <div class="course-hover-content-top">
+                                                            <div class="course-top-icon"><img src="~/assets/img/course/1/v1.png" alt=""></div>
+                                                            <div class="course-top-title">
+                                                                <h6>@course.Name</h6>
+                                                            </div>
+                                                        </div>
+                                                        <h5 class="course-hover-content-title"><a href="@Url.Action("Course", "Home", new {Id=course.Id,Name=course.Name})">@course.Name</a></h5>
+                                                        <p class="course-hover-content-text">@course.Summery</p>
+                                                        <ul class="course-hover-content-list">
+                                                            <li><i class="fa-thin fa-check"></i>مدت دوره : @course.HoursCout ساعت</li>
+                                                            <li><i class="fa-thin fa-check"></i>@course.Teacher.User.FullName</li>
+                                                            <li><i class="fa-thin fa-check"></i>حوزه : @course.Category.Name</li>
+                                                        </ul>
+                                                        <div class="course-hover-content-btn">
+                                                            <div class="course-hover-cart-btn">
+                                                                <a href="@Url.Action("Course", "Home", new {Id=course.Id,Name=course.Name})" class="theme-btn course-btn">شرکت در دوره</a>
+                                                            </div>
+                                                            <div class="course-hover-fav-btn">
+                                                                <a href="@Url.Action("Course", "Home", new {Id=course.Id,Name=course.Name})"><i class="fa-thin fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            }
+                        }
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- بخش دوره ها پایان-->

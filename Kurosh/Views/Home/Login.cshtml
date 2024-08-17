@@ -1,0 +1,139 @@
+﻿@model ViewModel.Login
+
+@{
+    ViewBag.Title = "| ورود";
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+}
+
+
+
+<main>
+    <!-- بنر بالای سایت شروع-->
+    <section class="breadcrumb-area bg-default" data-background="../../assets/img/breadcrumb/breadcrumb-bg.jpg">
+        <img src="~/assets/img/breadcrumb/shape-1.png" alt="" class="breadcrumb-shape">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <h2 class="breadcrumb-title">ورود</h2>
+                        <div class="breadcrumb-list">
+                            <a href="@Url.Action("Index","Home")">خانه</a>
+                            <span>ورود</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بنر بالای سایت پایان-->
+    <!-- sign in area start -->
+    <div class="account-area pt-120 pb-120">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8 col-md-10">
+                    <div class="account-wrap">
+                        <div class="account-top">
+                            <div class="account-top-link">
+                                <a href="@Url.Action("Register","Home")">ثبت نام</a>
+                            </div>
+                            <div class="account-top-current">
+                                <span>ورود</span>
+                            </div>
+                        </div>
+                        <div class="account-main">
+                            <h3 class="account-title">به حساب خود وارد شوید 👋</h3>
+                            <form action="@Url.Action("Login","Home")" class="account-form" method="post">
+
+                                <div class="account-form-item mb-20">
+                                    <div class="account-form-label">
+                                        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "" })
+                                    </div>
+                                    <div class="account-form-input">
+                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "نام کاربری خود را وارد کنید" } })
+                                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="account-form-item mb-20">
+                                    <div class="account-form-label">
+                                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
+                                    </div>
+                                    <div class="account-form-input">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "********" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="account-form-condition">
+                                    <label class="condition_label">
+                                        مرا به خاطر بسپار
+                                        <input type="checkbox">
+                                        <span class="check_mark"></span>
+                                    </label>
+                                </div>
+                                <div class="account-form-button">
+                                    <button type="submit" class="account-btn">ورود</button>
+                                </div>
+                            </form>
+                            <div class="account-break">
+                                <span>یا</span>
+                            </div>
+                            <div class="account-bottom">
+                                <div class="account-option">
+                                    <a href="#" class="account-option-account">
+                                        <img src="~/assets/img/bg/google.png" alt="">
+                                        <span>گوگل</span>
+                                    </a>
+                                    <a href="#" class="account-option-account">
+                                        <img src="~/assets/img/bg/apple.png" alt="">
+                                        <span>اپل</span>
+                                    </a>
+                                    <a href="#" class="account-option-account">
+                                        <img src="~/assets/img/bg/facebook.png" alt="">
+                                        <span>فیس بوک</span>
+                                    </a>
+                                </div>
+                                <div class="account-bottom-text">
+                                    <p>حساب کاربری ندارید؟ <a href="@Url.Action("Register","Home")">برای ثبت نام رایگان اینجا کلیک</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- sign in area end -->
+    <!-- بنر پایین شروع-->
+    <div class="cta-area">
+        <div class="container">
+            <div class="cta-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-content mb-30 mb-lg-0">
+                            <span class="cta-subtitle">دانلود برنامه</span>
+                            <h2 class="cta-title">
+                                آیا برای شروع کار خود آماده اید
+                                دوره آنلاین؟
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-button">
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-apple"></i>فروشگاه اپل</a>
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-google-play"></i>فروشگاه Play</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- بنر پایین پایان-->
+</main>
+
+
+
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

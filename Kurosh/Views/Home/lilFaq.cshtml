@@ -1,0 +1,72 @@
+﻿@model IEnumerable<DomainClass.FAQ>
+
+@{ 
+    var i = 0;
+}
+
+<!-- faq area start -->
+<div class="h4_faq-area pt-140 pb-90" style="padding-bottom:0">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="h4_faq-img w_img mb-50">
+                    <img src="../../assets/img/faq/4/1.png" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="h4_faq-wrap mb-50">
+                    <div class="section-area-4 mb-30">
+                        <h2 class="section-title mb-10">سوالات متداول</h2>
+                        <p class="section-text">
+                            سوالاتی که بیشتر کاربران برایشان پیش می آید
+                        </p>
+                    </div>
+                    <div class="h4_faq-content">
+                        <div class="accordion" id="Expp">
+                            @foreach (var item in Model)
+                            {
+                                if (i == 0)
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq-@item.Id" aria-expanded="true" aria-controls="faq-@item.Id">
+                                                @item.Question
+                                            </button>
+                                        </h2>
+                                        <div id="faq-@item.Id" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#Expp">
+                                            <div class="accordion-body">
+                                                <p>
+                                                    @item.Answer
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    i++;
+                                }
+                                else
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-@item.Id" aria-expanded="false" aria-controls="faq-@item.Id">
+                                                @item.Question
+                                            </button>
+                                        </h2>
+                                        <div id="faq-@item.Id" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree" data-bs-parent="#Expp">
+                                            <div class="accordion-body">
+                                                <p>
+                                                    @item.Answer
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- faq area end -->

@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+    var db = new DataLayer.KuroshDB();
+    var set = db.SettingRepository.Get().SingleOrDefault();
+}
+<main>
+    <!-- banner area start -->
+    <section class="banner-area">
+        <div class="single-banner container container-custom-1 p-0">
+            <img class="banner-top-shape-1" src="~/assets/img/banner/1/1.png" alt="">
+            <img class="banner-top-shape-2" src="~/assets/img/banner/1/3.png" alt="">
+            <img class="banner-top-shape-3" src="~/assets/img/banner/1/5.png" alt="">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-5 col-md-8">
+                        <div class="banner-content">
+                            <div class="section-area">
+                                <span class="section-subtitle">بستر یادگیری آنلاین</span>
+                                <h1 class="section-title">
+                                    <span>
+                                        @set.HeroTitle
+                                    </span>
+                                </h1>
+                                <p class="section-text">
+                                    @set.HeroText
+                                </p>
+                                <a href="@Url.Action("Courses","Home")" class="theme-btn theme-btn-big">مشاهده همه دوره</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-7 d-none d-lg-block">
+                        <div class="banner-right">
+                            <div class="banner-img">
+                                <img src="~/assets/img/banner/1/banner-img.png" alt="">
+                            </div>
+                            <div class="banner-meta">
+                                <div class="banner-inner-meta banner-meta-info">
+                                    <img class="inner-img" src="~/assets/img/banner/1/info_icon.png" alt="">
+                                    <div class="banner-inner-info">
+                                        <div class="banner-info-img">
+                                            <img src="~/assets/img/banner/1/author.jpg" alt="">
+                                            <span class="banner-info-icon"><i class="fa-solid fa-star"></i></span>
+                                        </div>
+                                        <div class="banner-info-text">
+                                            <h5>برایان اسکویدn</h5>
+                                            <p>«دردناک‌ترین افسانه‌های گوناگون با مانعی مناسب به هر که وصلش کنم برمی‌خیزد».</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="banner-inner-meta banner-meta-rating">
+                                    <span><i class="fa-solid fa-star"></i>4.5 (3.4k بررسی)</span>
+                                    <h5>تبریک می گویم</h5>
+                                </div>
+                            </div>
+                            <div class="banner-right-shape">
+                                <img class="banner-shape-1" src="~/assets/img/banner/1/shape_1.png" alt="">
+                                <img class="banner-shape-2" src="~/assets/img/banner/1/2.png" alt="">
+                                <img class="banner-shape-4" src="~/assets/img/banner/1/4.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner area end -->
+    @Html.Action("LilCat", "Home")
+    @Html.Action("LilCourse", "Home")
+    <!-- about area start -->
+    <section class="about-area pt-140 pb-90">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-6">
+                    <div class="about-img mb-50">
+                        <img src="~/assets/img/about/1/1.png" alt="">
+                        <div class="about-img-meta">
+                            <span><i class="fa-solid fa-star"></i>پیوستن</span>
+                            <h5>به ما بپیوندید</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-10">
+                    <div class="about-content mb-50">
+                        <div class="section-area mb-20">
+                            <span class="section-subtitle">آموزشگاه فنی حرفه ای کوروش</span>
+                            <h2 class="section-title mb-15">درباره آموزشگاه</h2>
+
+                            @Html.Raw(set.About)
+
+
+                        </div>
+                        <div class="about-content-button">
+                            <a href="@Url.Action("Register","Home")" class="theme-btn about-btn theme-btn-medium">همین الان ثبت نام کنید</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- about area end -->
+    @Html.Action("LilBlog", "Home")
+    <!-- testimonial area start -->
+    @Html.Action("LilTeam", "Home")
+    <!-- testimonial area end -->
+    <!-- counter area start -->
+    <div class="counter-area">
+        <div class="container">
+            <div class="counter-wrap" style="border-radius:10px">
+                <div class="row g-0">
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter-item">
+                            <div class="counter-icon">
+                                <i class="fa-thin fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="counter-info">
+                                <h3 class="counter-info-title">
+                                    <span class=" count_one" data-count="@set.TeacherCount">00</span>
+
+                                </h3>
+                                <span class="counter-info-text"> اساتید</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter-item">
+                            <div class="counter-icon">
+                                <i class="fa-thin fa-book-bookmark"></i>
+                            </div>
+                            <div class="counter-info">
+                                <h3 class="counter-info-title">
+                                    <span class=" count_one" data-count="@set.CourseCount">00</span>
+
+                                </h3>
+                                <span class="counter-info-text"> دوره ها</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter-item">
+                            <div class="counter-icon">
+                                <i class="fa-thin fa-user-group"></i>
+                            </div>
+                            <div class="counter-info">
+                                <h3 class="counter-info-title">
+                                    <span class=" count_one" data-count="@set.StudentCount">00</span>
+
+                                </h3>
+                                <span class="counter-info-text"> دانشجویان</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                        <div class="counter-item">
+                            <div class="counter-icon">
+                                <i class="fa-thin fa-medal"></i>
+                            </div>
+                            <div class="counter-info">
+                                <h3 class="counter-info-title">
+                                    <span class=" count_one" data-count="@set.RewardCount">00</span>
+                                </h3>
+                                <span class="counter-info-text"> جوایز</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- counter area end -->
+    @Html.Action("lilFaq", "Home")
+    @Html.Action("NewBlog", "Home")
+    <!-- بنر پایین شروع-->
+    <div class="cta-area">
+        <div class="container">
+            <div class="cta-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-content mb-30 mb-lg-0">
+                            <span class="cta-subtitle">دانلود برنامه</span>
+                            <h2 class="cta-title">
+                                آیا برای شروع کار خود آماده اید
+                                دوره آنلاین؟
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-button">
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-apple"></i>فروشگاه اپل</a>
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-google-play"></i>فروشگاه Play</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- بنر پایین پایان-->
+</main>

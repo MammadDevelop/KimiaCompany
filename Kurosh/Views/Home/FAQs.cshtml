@@ -1,0 +1,124 @@
+﻿@model IEnumerable<DomainClass.FAQ>
+
+@{
+    ViewBag.Title = "_ سوالات متداول";
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+}
+
+<main>
+    <!-- بنر بالای سایت شروع-->
+    <section class="breadcrumb-area bg-default" data-background="../../assets/img/breadcrumb/breadcrumb-bg.jpg">
+        <img src="../../assets/img/breadcrumb/shape-1.png" alt="" class="breadcrumb-shape">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <h2 class="breadcrumb-title">سوالات متداول</h2>
+                        <div class="breadcrumb-list">
+                            <a href="@Url.Action("Index","Home")">صفحه اصلی</a>
+                            <span>سوالات متداول</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بنر بالای سایت پایان-->
+
+    @{
+        var i = 0;
+    }
+
+    <!-- faq area start -->
+    <div class="h4_faq-area pt-140 pb-90">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="h4_faq-img w_img mb-50">
+                        <img src="../../assets/img/faq/4/1.png" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="h4_faq-wrap mb-50">
+                        <div class="section-area-4 mb-30">
+                            <h2 class="section-title mb-10">سوالات متداول</h2>
+                            <p class="section-text">
+                                سوالاتی که بیشتر کاربران برایشان پیش می آید
+                            </p>
+                        </div>
+                        <div class="h4_faq-content">
+                            <div class="accordion" id="Expp">
+                                @foreach (var item in Model)
+                                {
+                                    if (i == 0)
+                                    {
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingOne">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq-@item.Id" aria-expanded="true" aria-controls="faq-@item.Id">
+                                                    @item.Question
+                                                </button>
+                                            </h2>
+                                            <div id="faq-@item.Id" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#Expp">
+                                                <div class="accordion-body">
+                                                    <p>
+                                                        @item.Answer
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        i++;
+                                    }
+                                    else
+                                    {
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-@item.Id" aria-expanded="false" aria-controls="faq-@item.Id">
+                                                    @item.Question
+                                                </button>
+                                            </h2>
+                                            <div id="faq-@item.Id" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree" data-bs-parent="#Expp">
+                                                <div class="accordion-body">
+                                                    <p>
+                                                        @item.Answer
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- faq area end -->
+    <!-- بنر پایین شروع-->
+    <div class="cta-area">
+        <div class="container">
+            <div class="cta-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-content mb-30 mb-lg-0">
+                            <span class="cta-subtitle">دانلود برنامه</span>
+                            <h2 class="cta-title">
+                                آیا برای شروع کار خود آماده اید
+                                دوره آنلاین؟
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-button">
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-apple"></i>فروشگاه اپل</a>
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-google-play"></i>فروشگاه Play</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- بنر پایین پایان-->
+</main>
+

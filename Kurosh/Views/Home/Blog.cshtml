@@ -1,0 +1,166 @@
+﻿@model DomainClass.Blog
+
+@{
+    DataLayer.KuroshDB db = new DataLayer.KuroshDB();
+    var pblog = db.BlogRepository.Get().OrderBy(b => b.ReleaseDate).Take(5);
+    var Cats = db.CategoryRepository.Get();
+    ViewBag.Title = " - " + Model.Title;
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+}
+
+<main>
+    <!-- بنر بالای سایت شروع-->
+    <section class="breadcrumb-area bg-default" data-background="../../assets/img/breadcrumb/breadcrumb-bg.jpg">
+        <img src="../../assets/img/breadcrumb/shape-1.png" alt="" class="breadcrumb-shape">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <h2 class="breadcrumb-title">@Model.Title</h2>
+                        <div class="breadcrumb-list">
+                            <a href="@Url.Action("Index","Home")">صفحه اصلی</a>
+                            <a href="@Url.Action("Blogs","Home")">بلاگ ها</a>
+                            <span>@Model.Title</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بنر بالای سایت پایان-->
+    <!-- جزییات دوره شروع-->
+    <section class="blog_details-area pt-120 pb-80">
+        <div class="container">
+            <div class="blog_details-img">
+                <img src="~/Areas/assets/ImageBlogs/@Model.Image" alt="@Model.Title - کوروش" style="max-height:492px;width:100%;min-height:590px">
+            </div>
+            <div class="row">
+                <div class="col-xl-8 col-lg-8">
+                    <div class="blog_details-wrap mb-60">
+                        <div class="blog_details-top mb-50">
+                            <h3 class="blog_details-title">@Model.Title</h3>
+                            <div class="blog_details-meta">
+                                <div class="blog_details-author">
+                                    <div class="blog_details-author-img">
+                                        <img style="border-radius:100%" src="~/Areas/assets/ImageProfileUser/@Model.Publisher.Image" alt="@Model.Publisher.FullName">
+                                    </div>
+                                    <div class="blog_details-author-info">
+                                        <span>@Model.Publisher.Role.Title</span>
+                                        <h5><a href="team.html">@Model.Publisher.FullName</a></h5>
+                                    </div>
+                                </div>
+                                <div class="blog_details-category">
+                                    <span>دسته بندی</span>
+                                    <h5><a href="#">@Model.Tags.Split(',')[0]</a></h5>
+                                </div>
+                                <div class="blog_details-rating">
+                                    <span>@Model.Seen بازدید</span>
+                                    <ul>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog_details-content">
+                            <div class="blog_details-inner-text mr-80">
+                                @Html.Raw(Model.Descreption)
+                            </div>
+
+                            <div class="blog_details-content-meta mt-5">
+                                <div class="blog_details-content-tag">
+                                    <h6>تگ ها :</h6>
+                                    <ul>
+                                        @foreach (var item in Model.Tags.Split(','))
+                                        {
+                                            <li><a href="#">@item</a></li>
+                                        }
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4">
+                    <div class="blog_details-sidebar mb-60">
+                        <div class="blog_details-widget">
+                            <h4 class="blog_details-widget-title">جستجو</h4>
+                            <form action="@Url.Action("Search","Home")">
+                                <input type="text" name="KeyWord" placeholder="جستجو ...">
+                                <button type="submit"><i class="fa-thin fa-magnifying-glass"></i></button>
+                            </form>
+                        </div>
+                        <div class="blog_details-widget">
+                            <h4 class="blog_details-widget-title">مقالات اخیر</h4>
+                            @foreach (var item in pblog)
+                            {
+                                <div class="blog_details-widget-post">
+                                    <div class="blog_details-post-img">
+                                        <a href="@Url.Action("Blog", "Home", new { Id = item.Id,Name=item.Title })"><img src="~/Areas/assets/ImageBlogs/@item.Image" alt="@item.Title" style="border-radius:7px"></a>
+                                    </div>
+                                    <div class="blog_details-post-info">
+                                        <h6><a href="@Url.Action("Blog", "Home", new { Id = item.Id,NAme=item.Title })">@item.Title</a></h6>
+                                        <span><i class="fa-thin fa-clock"></i>@Utility.GeneralUtility.toLongShamsiDate(item.ReleaseDate)</span>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="blog_details-widget widget-category">
+                            <h4 class="blog_details-widget-title">دسته بندی ها</h4>
+                            <div class="blog_details-widget-category">
+                                <ul>
+                                    @foreach (var item in Cats)
+                                    {
+                                        <li><a href="@Url.Action("Category/"+item.Id,"Home")">@item.Name</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="blog_details-widget">
+                            <h4 class="blog_details-widget-title">تگ ها</h4>
+                            <div class="blog_details-widget-tag">
+                                <ul>
+                                    @foreach (var item in Model.Tags.Split(','))
+                                    {
+                                        <li><a href="#">@item</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- جزییات دوره پایان-->
+    <!-- بنر پایین شروع-->
+    <div class="cta-area">
+        <div class="container">
+            <div class="cta-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-content mb-30 mb-lg-0">
+                            <span class="cta-subtitle">دانلود برنامه</span>
+                            <h2 class="cta-title">
+                                آیا برای شروع کار خود آماده اید
+                                دوره آنلاین؟
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-button">
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-apple"></i>فروشگاه اپل</a>
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-google-play"></i>فروشگاه Play</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- بنر پایین پایان-->
+</main>

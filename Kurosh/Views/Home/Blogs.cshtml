@@ -1,0 +1,99 @@
+﻿@model IEnumerable<DomainClass.Blog>
+
+@{
+    ViewBag.Title = "_ مقالات";
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+    var Count = Int32.Parse(ViewBag.Count.ToString());
+    var Page = Int32.Parse(ViewBag.Page.ToString());
+}
+
+<main>
+    <!-- بنر بالای سایت شروع-->
+    <section class="breadcrumb-area bg-default" data-background="../../assets/img/breadcrumb/breadcrumb-bg.jpg">
+        <img src="../../assets/img/breadcrumb/shape-1.png" alt="" class="breadcrumb-shape">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <h2 class="breadcrumb-title">بلاگ ها</h2>
+                        <div class="breadcrumb-list">
+                            <a href="@Url.Action("Index","Home")">صفحه اصلی</a>
+                            <span>بلاگ ها</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بنر بالای سایت پایان-->
+    <!-- blog area start -->
+    <section class="innerPage_blog-area pt-120 pb-90">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-xl-4 col-lg-6 col-md-6">
+                        <div class="h2_blog-item mb-30">
+                            <div class="h2_blog-img" style="max-block-size:174px">
+                                <a href="@Url.Action("Blog", "Home", new { Id = item.Id })"><img src="~/Areas/assets/ImageBlogs/@item.Image" alt="@item.Title - آموزشگاه کوروش"></a>
+                            </div>
+                            <div class="h2_blog-content">
+                                <div class="h2_blog-content-meta">
+                                    <span><i class="fa-thin fa-user"></i>@item.Publisher.FullName</span>
+                                    <span><i class="fa-thin fa-clock"></i>@Utility.GeneralUtility.toLongShamsiDate(item.ReleaseDate)</span>
+                                </div>
+                                <h5 class="h2_blog-content-title"><a href="blog-details.html">@item.Title</a></h5>
+                                <a href="@Url.Action("Blog", "Home", new { Id = item.Id })" class="theme-btn blog-btn t-theme-btn">ادامه مطلب</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="pagination-area mt-20 mb-30">
+                        <ul>
+                            @for (int i = 0; i <= Count; i++)
+                            {
+                                if (i == Page)
+                                {
+                                    <li><a class="bg-primary disabled text-white" >@(i+1)</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Blogs", "Home", new {Page= i})">@(i+1)</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- blog area end -->
+    <!-- بنر پایین شروع-->
+    <div class="cta-area">
+        <div class="container">
+            <div class="cta-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-content mb-30 mb-lg-0">
+                            <span class="cta-subtitle">دانلود برنامه</span>
+                            <h2 class="cta-title">
+                                آیا برای شروع کار خود آماده اید
+                                دوره آنلاین؟
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-button">
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-apple"></i>فروشگاه اپل</a>
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-google-play"></i>فروشگاه Play</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- بنر پایین پایان-->
+</main>

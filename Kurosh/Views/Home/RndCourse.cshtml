@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DomainClass.Coures>
+
+
+<!-- بخش دسته بندی شروع-->
+<section class="category-area pt-120 pb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3">
+                <div class="category-left pb-60">
+                    <div class="section-area">
+                        <span class="section-subtitle">دوره های مرتبط  </span>
+                        <h2 class="section-title mb-20">آموزشگاه فناوری اطلاعات کوروش  </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9">
+                <div class="category-wrap">
+                    <div class="category-shape">
+                        <img src="~/assets/img/category/1/shape-1.png" alt="" class="category-shape-1">
+                        <img src="~/assets/img/category/1/shape-2.png" alt="" class="category-shape-2">
+                        <img src="~/assets/img/category/1/shape-3.png" alt="" class="category-shape-3">
+                        <img src="~/assets/img/category/1/shape-4.png" alt="" class="category-shape-4">
+                    </div>
+                    <div class="category-active swiper pb-60">
+                        <div class="swiper-wrapper">
+                            @foreach (var item in Model)
+                            {
+
+                                <div class="swiper-slide">
+                                    <div class="category-item">
+                                        <div class="category-img">
+                                            <img src="~/Areas/assets/CoursesImage/@item.Image" alt="@item.Name _ آموزشگاه کوروش">
+                                        </div>
+                                        <div class="category-content">
+                                            <h5><a href="@Url.Action("Course/"+item.Id,"Home")"> @item.Name</a></h5>
+                                            <p>
+                                                <a href="@Url.Action("Course/"+item.Id,"Home")">
+                                                    مشاهده دوره
+                                                    <i class="fa-light fa-arrow-left"></i>
+                                                    <i class="fa-light fa-arrow-left"></i>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- بخش دسته بندی پایان-->

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DomainClass.Category>
+
+
+
+<!-- بخش دسته بندی شروع-->
+<section class="category-area pt-120 pb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3">
+                <div class="category-left pb-60">
+                    <div class="section-area">
+                        <span class="section-subtitle">دسته بندی ها  </span>
+                        <h2 class="section-title mb-20">دوره های آموزشی های محبوب</h2>
+                    </div>
+                    <div class="category-navigation">
+
+                        <div class="category-next">
+                            <i class="fa-light fa-arrow-right"></i>
+                        </div>
+                        <div class="category-prev">
+                            <i class="fa-thin fa-arrow-left"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9">
+                <div class="category-wrap">
+                    <div class="category-shape">
+                        <img src="~/assets/img/category/1/shape-1.png" alt="" class="category-shape-1">
+                        <img src="~/assets/img/category/1/shape-2.png" alt="" class="category-shape-2">
+                        <img src="~/assets/img/category/1/shape-3.png" alt="" class="category-shape-3">
+                        <img src="~/assets/img/category/1/shape-4.png" alt="" class="category-shape-4">
+                    </div>
+                    <div class="category-active swiper pb-60">
+                        <div class="swiper-wrapper">
+                            @foreach (var item in Model)
+                            {
+
+                                <div class="swiper-slide">
+                                    <div class="category-item">
+                                        <div class="category-img">
+                                            <img src="~/Areas/assets/CategoryImage/@item.image" alt="@item.Name _ آموزشگاه کوروش">
+                                        </div>
+                                        <div class="category-content">
+                                            <h5><a href="@Url.Action("Category/"+item.Id,"Home")"> @item.Name</a></h5>
+                                            <p>
+                                                <a href="@Url.Action("Category/"+item.Id,"Home")">
+                                                    @item.Coures.Count مورد
+                                                    <i class="fa-light fa-arrow-left"></i>
+                                                    <i class="fa-light fa-arrow-left"></i>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- بخش دسته بندی پایان-->

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DomainClass.Blog>
+
+
+<!-- event area start -->
+<section class="event-area" style=" max-width: 1600px; margin-left: auto; margin-right: auto;">
+    <img src="~/assets/img/event/1/bg.jpg" alt="" class="event-bg-img">
+    <div class="event-wrap pt-120 pb-40">
+        <div class="container">
+            <div class="row align-items-center mb-30">
+                <div class="col-xl-8 col-lg-8 col-md-8">
+                    <div class="event-section-area mb-20">
+                        <div class="section-area">
+                            <span class="section-subtitle">اخبار ما</span>
+                            <h2 class="section-title mb-0">بلاگ های کوروش</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4">
+                    <div class="event-navigation mb-30">
+
+                        <div class="event-next">
+                            <i class="fa-light fa-arrow-right"></i>
+                        </div>
+                        <div class="event-prev">
+                            <i class="fa-thin fa-arrow-left"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="event-active swiper pb-80">
+                <div class="swiper-wrapper">
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="swiper-slide">
+                            <div class="event-item">
+                                <div class="event-img" style="max-block-size:174px">
+                                    <a href="@Url.Action("Blog", "Home", new { Id = item.Id, Name = item.Title })"><img src="~/Areas/assets/ImageBlogs/@item.Image" alt="@item.Title - مجتمع آموزشی کوروش"></a>
+                                </div>
+                                <div class="event-content">
+                                    <div class="event-content-meta">
+                                        <span><i class="fa-thin fa-location-dot"></i>@item.Publisher.FullName</span>
+                                        <span><i class="fa-thin fa-clock"></i>@Utility.GeneralUtility.toLongShamsiDate(item.ReleaseDate)</span>
+                                    </div>
+                                    <h5 class="event-content-title"><a href="@Url.Action("Blog", "Home", new { Id = item.Id, Name = item.Title })">@item.Title</a></h5>
+                                    <a href="@Url.Action("Blog", "Home", new { Id = item.Id, Name = item.Title })" class="t-theme-btn theme-btn event-btn">مشاهده مقاله</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- event area end -->

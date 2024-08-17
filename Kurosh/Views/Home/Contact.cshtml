@@ -1,0 +1,162 @@
+﻿@model DomainClass.Message
+
+@{
+    ViewBag.Title = "| تماس با ما ";
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+    var db = new DataLayer.KuroshDB();
+    var set = db.SettingRepository.Get().SingleOrDefault();
+}
+
+
+
+<main>
+    <!-- بنر بالای سایت شروع-->
+    <section class="breadcrumb-area bg-default" data-background="../../assets/img/breadcrumb/breadcrumb-bg.jpg">
+        <img src="~/assets/img/breadcrumb/shape-1.png" alt="" class="breadcrumb-shape">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <h2 class="breadcrumb-title">تماس با ما</h2>
+                        <div class="breadcrumb-list">
+                            <a href="@Url.Action("Index","Home")">صفحه اصلی</a>
+                            <span>تماس با ما</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بنر بالای سایت پایان-->
+    <!-- contact area start -->
+    <section class="contact-area pt-120 pb-120">
+        <div class="container">
+            <div class="contact-wrap">
+                <div class="row">
+                    <div class="col-xl-8 col-md-8">
+                        <div class="contact-content pr-80 mb-20">
+                            <h3 class="contact-title mb-25">ارسال پیام</h3>
+                            <form action="@Url.Action("Contact","Home")" class="contact-form" method="post">
+                                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-info" })
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6">
+                                        <div class="contact-form-input mb-30">
+                                            @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { placeholder = "نام و نام خانوادگی" } })
+
+                                            <span class="inner-icon"><i class="fa-thin fa-user"></i></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6">
+                                        <div class="contact-form-input mb-30">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "پست الکترونیکی" } })
+
+                                            <span class="inner-icon"><i class="fa-thin fa-envelope"></i></span>
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6">
+                                        <div class="contact-form-input mb-30">
+                                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { placeholder = "شماره تماس" } })
+
+                                            <span class="inner-icon"><i class="fa-thin fa-phone-volume"></i></span>
+                                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6 ">
+                                        <div class="contact-form-input mb-30">
+                                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { placeholder = "عنوان پیام" } })
+
+                                            <span class="inner-icon"><i class="fa-thin fa-circle-exclamation"></i></span>
+                                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="contact-form-input mb-50 contact-form-textarea">
+                                            @Html.EditorFor(model => model.Text, new { htmlAttributes = new { placeholder = "متن پیام" } })
+
+                                            <span class="inner-icon"><i class="fa-thin fa-pen"></i></span>
+                                            @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="contact-form-submit mb-30">
+                                            <div class="contact-form-btn">
+                                                <input type="submit" value="ارسال پیام" class="theme-btn contact-btn" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4">
+                        <div class="contact-info ml-50 mb-20">
+                            <h3 class="contact-title mb-40">پل های ارتباطی</h3>
+                            <div class="contact-info-item">
+                                <span><i class="fa-thin fa-location-dot"></i>آدرس</span>
+                                <p>@set.Address</p>
+                            </div>
+                            <div class="contact-info-item">
+                                <span><i class="fa-thin fa-mobile-notch"></i>شماره تماس</span>
+                                <a href="tel:@set.PhoneNumber">@set.PhoneNumber</a>
+                            </div>
+                            <div class="contact-info-item">
+                                <span><i class="fa-thin fa-envelope"></i>پست الکترونیکی</span>
+                                <a href="mailto:@set.Email">@set.Email</a>
+                            </div>
+                            <div class="contact-social">
+                                <span>صفحات اجتماعی ما</span>
+                                <ul>
+                                    <li><a href="https://instagram.com/@set.InstaId"><i class="fa-brands fa-instagram"></i></a></li>
+                                    <li><a href="https://api.whatsapp.com/send?phone=@set.WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></li>
+                                    <li><a href="https://t.me/@set.TelegramId"><i class="fa-brands fa-telegram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-map">
+            <iframe src="@set.MapLink" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+    <!-- contact area end -->
+    <!-- بنر پایین شروع-->
+    <div class="cta-area">
+        <div class="container">
+            <div class="cta-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-content mb-30 mb-lg-0">
+                            <span class="cta-subtitle">دانلود برنامه</span>
+                            <h2 class="cta-title">
+                                آیا برای شروع کار خود آماده اید
+                                دوره آنلاین؟
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="cta-button">
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-apple"></i>فروشگاه اپل</a>
+                            <a href="#" class="cta-btn"><i class="fa-brands fa-google-play"></i>فروشگاه Play</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- بنر پایین پایان-->
+</main>
+
+
+
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
