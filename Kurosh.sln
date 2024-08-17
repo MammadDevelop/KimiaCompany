@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{2387312E-E6C3-4CF6-A782-B37A0AB3E3CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kurosh", "Kurosh\Kurosh.csproj", "{10B2838B-E5E7-4F97-A640-BCF951B3CB29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2387312E-E6C3-4CF6-A782-B37A0AB3E3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2387312E-E6C3-4CF6-A782-B37A0AB3E3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2387312E-E6C3-4CF6-A782-B37A0AB3E3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10B2838B-E5E7-4F97-A640-BCF951B3CB29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10B2838B-E5E7-4F97-A640-BCF951B3CB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10B2838B-E5E7-4F97-A640-BCF951B3CB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10B2838B-E5E7-4F97-A640-BCF951B3CB29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

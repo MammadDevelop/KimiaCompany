@@ -1,0 +1,261 @@
+﻿@model DomainClass.Coures
+
+@{
+    ViewBag.Title = "Course";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+    DataLayer.KuroshDB db = new DataLayer.KuroshDB();
+    var Teachers = db.UserRepository.Get(u => u.RoleId == 2);
+    var cat = db.CategoryRepository.Get();
+}
+
+
+<div class="main-content app-content">
+
+    <!-- container -->
+    <div class="main-container container-fluid">
+
+
+        <!-- breadcrumb -->
+        <div class="breadcrumb-header justify-content-between">
+            <div>
+                <h4 class="content-title mb-2 mb-xl-0">افزودن دوره</h4>
+            </div>
+            <div class="d-flex my-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Dashboard","Admin");">صفحه اصلی</a></li>
+                        <li class="breadcrumb-item active " aria-current="page">افزودن دوره</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- /breadcrumb -->
+        <!-- row -->
+        <div class="row row-sm">
+            <!-- Col -->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-4 main-content-label ">
+                                <b>
+                                    افزودن دوره
+                                </b>
+                            </div>
+                            <div class="col-md-9 mb-4 main-content-label text-warning ">لطفا اطلاعات و ویژگی های دوره را با دقت وارد کنید🙏</div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9 mb-4 main-content-label text-danger ">قیمت دوره را با دقت وارد کنید ⚠️</div>
+                        </div>
+
+
+                        @using (Html.BeginForm("Course", "Dashboard", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "form-label" })
+                                        </div>
+                                        <div class="col-md-9">
+
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "نام دوره" } })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "form-label" })
+                                        </div>
+                                        <div class="col-md-9">
+
+                                            <input class="form-control" type="file" id="FileUpload" name="FileUpload">
+                                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            @Html.LabelFor(model => model.HoursCout, htmlAttributes: new { @class = "form-label" })
+                                        </div>
+                                        <div class="col-md-9">
+
+                                            @Html.EditorFor(model => model.HoursCout, new { htmlAttributes = new { @class = "form-control", placeholder = "ساعات دوره" } })
+                                            @Html.ValidationMessageFor(model => model.HoursCout, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            @Html.LabelFor(model => model.OldPrice, htmlAttributes: new { @class = "form-label" })
+                                        </div>
+                                        <div class="col-md-9">
+
+                                            @Html.EditorFor(model => model.OldPrice, new { htmlAttributes = new { @class = "form-control", placeholder = "قیمت سابق" } })
+                                            @Html.ValidationMessageFor(model => model.OldPrice, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "form-label" })
+                                        </div>
+                                        <div class="col-md-9">
+
+                                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", placeholder = "قیمت" } })
+                                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            @Html.LabelFor(model => model.Descreption, htmlAttributes: new { @class = "form-label" })
+                                        </div>
+                                        <div class="col-md-9">
+
+                                            @Html.EditorFor(model => model.Descreption, new { htmlAttributes = new { @class = "form-control ckeditor", placeholder = "توضیحات" } })
+                                            @Html.ValidationMessageFor(model => model.Descreption, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            @Html.LabelFor(model => model.Summery, htmlAttributes: new { @class = "form-label" })
+                                        </div>
+                                        <div class="col-md-9">
+
+                                            @Html.EditorFor(model => model.Summery, new { htmlAttributes = new { @class = "form-control ", placeholder = "توضیحات مختصر" } })
+                                            @Html.ValidationMessageFor(model => model.Summery, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label class="form-label">
+                                                استاد دوره
+                                            </label>
+                                        </div>
+                                        <div class="col-md-9">
+
+                                            <select class="form-control select2-no-search" name="TeacherId">
+                                                @foreach (var item in Teachers)
+                                                {
+                                                    if (Model != null)
+                                                    {
+                                                        if (Model.TeacherId == item.Id)
+                                                        {
+                                                            <option value="@item.Id" selected>
+                                                                @item.FullName
+                                                            </option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.Id">
+                                                                @item.FullName
+                                                            </option>
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Id">
+                                                            @item.FullName
+                                                        </option>
+                                                    }
+
+
+                                                }
+                                            </select>
+                                            @Html.ValidationMessageFor(model => model.TeacherId, "", new { @class = "text-danger" })
+                                            @Html.HiddenFor(model => model.Id)
+                                            @Html.HiddenFor(model => model.Image)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label class="form-label">
+                                                دسته بندی دوره
+                                            </label>
+                                        </div>
+                                        <div class="col-md-9">
+
+                                            <select class="form-control select2-no-search" name="CatId">
+                                                @foreach (var item in cat)
+                                                {
+                                                    if (Model != null)
+                                                    {
+                                                        if (Model.CategoryId == item.Id)
+                                                        {
+                                                            <option value="@item.Id" selected>
+                                                                @item.Name
+                                                            </option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.Id">
+                                                                @item.Name
+                                                            </option>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Id">
+                                                            @item.Name
+                                                        </option>
+                                                    }
+
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                                <div class="row card-footer">
+                                    <div>
+                                        <input type="submit" value="ثبت" class="btn btn-primary " />
+                                    </div>
+                                    <div>
+                                        <a class="btn btn-danger" href="@Url.Action("Index","Dashboard","Admin")">
+                                            بازگشت
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+            <!-- /Col -->
+        </div>
+        <!-- row closed -->
+
+
+    </div>
+    <!-- Container closed -->
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

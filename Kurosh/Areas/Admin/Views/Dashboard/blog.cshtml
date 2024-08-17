@@ -1,0 +1,99 @@
+﻿@model DomainClass.Blog
+
+@{
+    ViewBag.Title = "blog";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<!-- main-content -->
+<div class="main-content app-content">
+
+    <!-- container -->
+    <div class="main-container container-fluid">
+
+
+        <!-- breadcrumb -->
+        <div class="breadcrumb-header justify-content-between">
+            <div>
+                <h4 class="content-title mb-2 mb-xl-0">افزودن مقاله</h4>
+            </div>
+            <div class="d-flex my-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Dashboard","Admin");">صفحه اصلی</a></li>
+                        <li class="breadcrumb-item active " aria-current="page">افزودن مقاله</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- /breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-md-12">
+                <div class="card blog-edit">
+                    <div class="card-header">
+                        <div class="card-title">افزودن مقاله</div>
+                        <p class="text-warning">
+                            <br />
+                            اندازه عکس اصلی مقاله نباید بیشتر 490*1110 پیکسل باشد ⛔
+                        </p>
+                    </div>
+
+                    @using (Html.BeginForm("Blog", "Dashboard", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                <div class="card-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "form-label text-dark" })
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "عنوان" } })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "form-label text-dark" })
+                    <div class="p-4 border mb-4 form-group rounded">
+
+                        <div>
+                            <input class="form-control" type="file" id="FileUpload" name="FileUpload">
+                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Descreption, htmlAttributes: new { @class = "form-label text-dark" })
+                       <textarea name="Description" id="Description" class="form-control ckeditor"></textarea>
+                        @Html.ValidationMessageFor(model => model.Descreption, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "form-label text-dark" })
+
+                        @Html.EditorFor(model => model.Tags, new { htmlAttributes = new { @class = "form-control", placeholder = "تگ ها" } })
+                        @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(m => m.Id)
+                        @Html.HiddenFor(m => m.Image)
+
+                    </div>
+                </div>
+                        <div class="card-footer ">
+                            <input type="submit" value="ثبت" class="btn btn-primary " />
+                            <a href="@Url.Action("Blogs/","Dashboard")" class="btn btn-danger float-end">بازگشت</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+
+
+    </div>
+    <!-- Container closed -->
+</div>
+<!-- main-content closed -->
+
+
+
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

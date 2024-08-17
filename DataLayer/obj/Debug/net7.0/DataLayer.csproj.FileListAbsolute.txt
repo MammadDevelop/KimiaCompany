@@ -1,0 +1,5 @@
+C:\Users\Mamma\source\repos\KimiaCompany\DataLayer\obj\Debug\net7.0\DataLayer.csproj.AssemblyReference.cache
+C:\Users\Mamma\source\repos\KimiaCompany\DataLayer\obj\Debug\net7.0\DataLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mamma\source\repos\KimiaCompany\DataLayer\obj\Debug\net7.0\DataLayer.AssemblyInfoInputs.cache
+C:\Users\Mamma\source\repos\KimiaCompany\DataLayer\obj\Debug\net7.0\DataLayer.AssemblyInfo.cs
+C:\Users\Mamma\source\repos\KimiaCompany\DataLayer\obj\Debug\net7.0\DataLayer.csproj.CoreCompileInputs.cache

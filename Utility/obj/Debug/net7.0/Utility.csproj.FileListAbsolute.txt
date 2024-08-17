@@ -1,0 +1,14 @@
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\bin\Debug\net7.0\Utility.deps.json
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\bin\Debug\net7.0\Utility.dll
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\bin\Debug\net7.0\Utility.pdb
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\obj\Debug\net7.0\Utility.csproj.AssemblyReference.cache
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\obj\Debug\net7.0\Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\obj\Debug\net7.0\Utility.AssemblyInfoInputs.cache
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\obj\Debug\net7.0\Utility.AssemblyInfo.cs
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\obj\Debug\net7.0\Utility.csproj.CoreCompileInputs.cache
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\obj\Debug\net7.0\Utility.dll
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\obj\Debug\net7.0\refint\Utility.dll
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\obj\Debug\net7.0\Utility.pdb
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\obj\Debug\net7.0\ref\Utility.dll
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\bin\Debug\net7.0\Utility.runtimeconfig.json
+C:\Users\Mamma\source\repos\KimiaCompany\Utility\obj\Debug\net7.0\Utility.genruntimeconfig.cache

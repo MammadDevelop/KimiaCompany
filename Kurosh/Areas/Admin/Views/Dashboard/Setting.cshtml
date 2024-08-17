@@ -1,0 +1,286 @@
+﻿@model DomainClass.Setting
+
+@{
+    ViewBag.Title = "Setting";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="main-content app-content">
+
+    <!-- container -->
+    <div class="main-container container-fluid">
+
+
+        <!-- breadcrumb -->
+        <div class="breadcrumb-header justify-content-between">
+            <div>
+                <h4 class="content-title mb-2 mb-xl-0">ویرایش پروفایل</h4>
+            </div>
+            <div class="d-flex my-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Dashboard","Admin");">صفحه اصلی</a></li>
+                        <li class="breadcrumb-item active " aria-current="page">ویرایش پروفایل</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- /breadcrumb -->
+        <!-- row -->
+        <div class="row row-sm">
+            <!-- Col -->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2 mb-4 main-content-label ">
+                                <b>
+                                    تنظیمات
+                                </b>
+                            </div>
+                            <div class="col-md-10 mb-4 main-content-label text-warning ">
+                                لطفا در تغییر فیلد های تنظبمات خود دثت فرمائید🙏
+                                <br />
+                                <br />
+                                لطفا در درج لینک ها و آیدی های صفحات خود دقت کنید 😊
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-10 mb-4 main-content-label text-danger ">اطلاعات خود را با دقت تغییر دهید ⚠️</div>
+                        </div>
+
+                        <form class="form-horizontal" action="@Url.Action("Setting", "Dashboard")" method="post" enctype="multipart/form-data">
+
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.HeroTitle, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.HeroTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "عنوان صفحه اصلی" } })
+                                        @Html.ValidationMessageFor(model => model.HeroTitle, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.HeroText, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.HeroText, new { htmlAttributes = new { @class = "form-control", placeholder = "متن صفحه اصلی" } })
+                                        @Html.ValidationMessageFor(model => model.HeroText, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "آدرس" } })
+                                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "شماره تماس" } })
+                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "پست الکترونیکی" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.InstaId, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.InstaId, new { htmlAttributes = new { @class = "form-control", placeholder = "آیدی اینستاگرام" } })
+                                        @Html.ValidationMessageFor(model => model.InstaId, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.TelegramId, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.TelegramId, new { htmlAttributes = new { @class = "form-control", placeholder = "آیدی تلگرام" } })
+                                        @Html.ValidationMessageFor(model => model.TelegramId, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.WhatsApp, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.WhatsApp, new { htmlAttributes = new { @class = "form-control", placeholder = "شماره واتساپ" } })
+                                        @Html.ValidationMessageFor(model => model.WhatsApp, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.About, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.About, new { htmlAttributes = new { @class = "form-control ckeditor " , placeholder = "متن درباره ما" } })
+                                        @Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.MapLink, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.MapLink, new { htmlAttributes = new { @class = "form-control", placeholder = "لینک گوگل مپ" } })
+                                        @Html.ValidationMessageFor(model => model.MapLink, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.StudentCount, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.StudentCount, new { htmlAttributes = new { @class = "form-control", placeholder = "تعداد دانشجو ها" } })
+                                        @Html.ValidationMessageFor(model => model.StudentCount, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.TeacherCount, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.TeacherCount, new { htmlAttributes = new { @class = "form-control", placeholder = "تعداد اساتید" } })
+                                        @Html.ValidationMessageFor(model => model.TeacherCount, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.CourseCount, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.CourseCount, new { htmlAttributes = new { @class = "form-control", placeholder = "تعداد دوره ها" } })
+                                        @Html.ValidationMessageFor(model => model.CourseCount, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.RewardCount, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.RewardCount, new { htmlAttributes = new { @class = "form-control", placeholder = "تعداد جوایز" } })
+                                        @Html.ValidationMessageFor(model => model.RewardCount, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.Summery, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.Summery, new { htmlAttributes = new { @class = "form-control", placeholder = "توضیحات" } })
+                                        @Html.ValidationMessageFor(model => model.Summery, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        @Html.LabelFor(model => model.appLink, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        @Html.EditorFor(model => model.appLink, new { htmlAttributes = new { @class = "form-control", placeholder = "لینک نرم افزار" } })
+                                        @Html.ValidationMessageFor(model => model.appLink, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row card-footer">
+                                <div>
+                                    <input type="submit" value="ویرایش اطلاعات" class="btn btn-primary " />
+                                </div>
+                                <div>
+                                    <a class="btn btn-danger" href="@Url.Action("Index","Dashboard","Admin")">
+                                        بازگشت
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- /Col -->
+        </div>
+        <!-- row closed -->
+
+
+    </div>
+    <!-- Container closed -->
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

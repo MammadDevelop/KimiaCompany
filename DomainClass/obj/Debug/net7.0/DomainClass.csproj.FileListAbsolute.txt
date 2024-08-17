@@ -1,0 +1,5 @@
+C:\Users\Mamma\source\repos\KimiaCompany\DomainClass\obj\Debug\net7.0\DomainClass.csproj.AssemblyReference.cache
+C:\Users\Mamma\source\repos\KimiaCompany\DomainClass\obj\Debug\net7.0\DomainClass.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mamma\source\repos\KimiaCompany\DomainClass\obj\Debug\net7.0\DomainClass.AssemblyInfoInputs.cache
+C:\Users\Mamma\source\repos\KimiaCompany\DomainClass\obj\Debug\net7.0\DomainClass.AssemblyInfo.cs
+C:\Users\Mamma\source\repos\KimiaCompany\DomainClass\obj\Debug\net7.0\DomainClass.csproj.CoreCompileInputs.cache

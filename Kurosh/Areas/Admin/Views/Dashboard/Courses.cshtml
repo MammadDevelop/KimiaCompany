@@ -1,0 +1,100 @@
+﻿@model IEnumerable<DomainClass.Coures>
+
+@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+<!-- main-content -->
+<div class="main-content app-content">
+
+    <!-- container -->
+    <div class="main-container container-fluid">
+
+
+        <!-- breadcrumb -->
+        <div class="breadcrumb-header justify-content-between">
+            <div>
+                <h4 class="content-title mb-2 mb-xl-0">دوره ها</h4>
+            </div>
+            <div class="d-flex my-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Dashboard","Admin");">صفحه اصلی</a></li>
+                        <li class="breadcrumb-item active " aria-current="page">دوره ها</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- /breadcrumb -->
+        <!-- row opened -->
+        <div class="row row-sm">
+            <!--/div-->
+            <!--div-->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title mg-b-2 mt-2">مقالات</h4>
+                            <i class="mdi mdi-dots-horizontal text-gray"></i>
+                        </div>
+                        <p class="col-11 tx-12 text-muted mb-2">تمامی دوره های سایت در این لیست قابل مشاهده هستند💕</p>
+                    </div>
+                    <div class="main-contact-action btn-list pt-3 pe-3" style="top:0">
+                        <a href="@Url.Action("Course", "Dashboard")" class="btn ripple btn-primary text-white btn-icon ms-1  rounded-5" data-bs-placement="top" data-bs-toggle="tooltip" title="افزودن دوره">
+                            <i class=" bi bi-plus-lg"></i>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover mg-b-1 text-md-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>شناسه</th>
+                                        <th>تصویر </th>
+                                        <th>نام دوره </th>
+                                        <th>نام مدرس </th>
+                                        <th>قیمت </th>
+                                        <th>قیمت سابق</th>
+                                        <th>ساعات دوره</th>
+                                        <th>دسته بندی دوره</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr style="">
+                                            <th scope="row">@item.Id</th>
+                                            <th>
+                                                <img src="~/Areas/assets/CoursesImage/@item.Image" style="max-width:100px;border-radius:10px" />
+                                            </th>
+                                            <th>@item.Name</th>
+                                            <th>@item.Teacher.User.FullName</th>
+                                            <th>@item.Price</th>
+                                            <th>@item.OldPrice</th>
+                                            <th>@item.HoursCout</th>
+                                            <th>@item.Category.Name</th>
+                                            <td style="text-align:left">
+                                                <a href="@Url.Action("Course/" + item.Id, "Dashboard")" class="btn btn-primary bi bi-pencil-square" data-bs-placement="top" data-bs-toggle="tooltip" title="ویرایش"> </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div><!-- bd -->
+                    </div><!-- bd -->
+                </div><!-- bd -->
+            </div>
+            <!--/div-->
+            <!--/div-->
+        </div>
+        <!-- /row -->
+
+
+    </div>
+    <!-- Container closed -->
+</div>
+<!-- main-content closed -->

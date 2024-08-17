@@ -1,0 +1,2 @@
+C:\Users\Mamma\source\repos\KimiaCompany\Kurosh\obj\Debug\Kurosh.csproj.AssemblyReference.cache
+C:\Users\Mamma\source\repos\KimiaCompany\Kurosh\obj\Debug\Kurosh.csproj.CoreCompileInputs.cache

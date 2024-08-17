@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DomainClass.Message>
+
+<div class="dropdown  nav-item main-header-message ">
+    <a class="new nav-link" href="javascript:void(0);"><i class="fe fe-mail"></i><span class=" pulse-danger"></span></a>
+    <div class="dropdown-menu">
+        <div class="menu-header-content bg-primary text-start d-flex rounded-top-5">
+            <div class="">
+                <h6 class="menu-header-title text-white mb-0">@Model.Count() پیام جدید</h6>
+            </div>
+        </div>
+        <div class="main-message-list chat-scroll">
+            @foreach (var item in Model)
+            {
+                <a href="@Url.Action("Message/"+item.Id,"Dashboard")" class="p-3 d-flex border-bottom">
+                    <div class="wd-90p">
+                        <div class="d-flex">
+                            <h5 class="mb-1 name">@item.FullName</h5>
+                            <p class="time mb-0 text-end ms-auto float-end">@Utility.GeneralUtility.toLongShamsiDate(item.ReleaseDate)</p>
+                        </div>
+                        <p class="mb-0 desc">@item.Subject</p>
+                    </div>
+                </a>
+
+            }
+        </div>
+        <div class="dropdown-footer text-center">
+            <a href="@Url.Action("Messages","Dashboard")" class="btn   btn-primary  w-md tx-13">مشاهده همه<i class="fe fe-arrow-right tx-12 ms-2 lh-1"></i></a>
+        </div>
+    </div>
+</div>

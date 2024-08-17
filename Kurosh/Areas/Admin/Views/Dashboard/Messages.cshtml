@@ -1,0 +1,111 @@
+﻿@model IEnumerable<DomainClass.Message>
+
+@{
+    ViewBag.Title = "Messages";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="main-content app-content">
+    <div class="main-container container-fluid">
+        <div class="row row-sm main-content-mail">
+            <div class="col-xl-12 col-lg-12 col-md-12 mt-3">
+                <div class="card">
+                    <div class="main-content-body main-content-body-mail card-body">
+                        <div class="main-mail-header">
+                            <div>
+                                <h4 class="main-content-title mg-b-5">پیام ها</h4>
+                            </div>
+                            <div>
+                                <span>1-50 از 1200</span>
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-outline-light disabled" type="button"><i class="icon ion-ios-arrow-back"></i></button> <button class="btn btn-outline-light" type="button"><i class="icon ion-ios-arrow-forward"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- main-mail-options -->
+                    <div class="main-mail-list">
+                        @foreach (var item in Model)
+                        {
+                            <div class="main-mail-item unread">
+                                <div class="main-mail-checkbox">
+                                    <span>@item.Id</span>
+                                </div>
+                                <div class="main-mail-body">
+                                    <div class="main-mail-from ">
+                                        @item.FullName
+                                    </div>
+                                    <div class="main-mail-subject">
+                                        <strong>@item.Subject</strong>
+
+                                        <span>@item.PhoneNumber</span>
+                                    </div>
+                                </div>
+                                <div class="main-mail-date ئف-3">
+                                    <strong>@Utility.GeneralUtility.toLongShamsiDate(item.ReleaseDate)</strong>
+
+                                    <a class="btn btn-primary bi bi-eye-fill" data-bs-placement="top" data-bs-toggle="tooltip" title="مشاهده پیام" href="@Url.Action("Message/" + item.Id, "Dashboard")"></a>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="mg-lg-b-30"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+@*<div class="main-content app-content mt-3">
+        <div class="main-container container-fluid">
+            <div class="row row-sm">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="card-title mg-b-2 mt-2">پیام ها</h4>
+                                <i class="mdi mdi-dots-horizontal text-gray"></i>
+                            </div>
+                            <p class="tx-12 text-muted mb-2">تمامی پیام های ارسال شده از این بخش قابل مشاهده هستند</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0 text-md-nowrap border">
+                                    <thead>
+                                        <tr>
+                                            <th>شناسه</th>
+                                            <th>نام</th>
+                                            <th>عنوان</th>
+                                            <th>شماره تماس</th>
+                                            <th>تاریخ</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <th scope="row">@item.Id</th>
+                                                <td>@item.FullName</td>
+                                                <td>@item.Subject</td>
+                                                <td>@item.PhoneNumber</td>
+                                                <td>@Utility.GeneralUtility.toLongShamsiDate(item.ReleaseDate)</td>
+                                                <td>
+                                                    <a href="@Url.Action("Message/"+item.Id,"Dashboard")" class="btn btn-primary">مشاهده پیام </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+*@

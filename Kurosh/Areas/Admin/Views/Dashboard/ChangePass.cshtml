@@ -1,0 +1,156 @@
+﻿@model ViewModel.ChangePass
+
+@{
+    ViewBag.Title = "ChangePass";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+
+    var db = new DataLayer.KuroshDB();
+    var user = db.user.GetByUserName(User.Identity.Name);
+}
+
+
+<div class="main-content app-content">
+
+    <!-- container -->
+    <div class="main-container container-fluid">
+
+
+        <!-- breadcrumb -->
+        <div class="breadcrumb-header justify-content-between">
+            <div>
+                <h4 class="content-title mb-2 mb-xl-0">تغییر رمز عبور</h4>
+            </div>
+            <div class="d-flex my-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Dashboard","Admin");">صفحه اصلی</a></li>
+                        <li class="breadcrumb-item active " aria-current="page">تغییر رمز عبور</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- /breadcrumb -->
+        <!-- row -->
+        <div class="row row-sm">
+            <!-- Col -->
+            <div class="col-xl-4">
+                <div class="card mg-b-20">
+                    <div class="card-body">
+                        <div class="ps-0">
+                            <div class="main-profile-overview">
+                                <div class="d-flex">
+                                    <div class="main-img-user profile-user"><img alt="" src="~/Areas/assets/ImageProfileUser/@user.Image"></div>
+                                    <div class="d-flex justify-content-between mg-b-20">
+                                        <div class="mt-5 ms-3">
+                                            <h5 class="main-profile-name">@user.FullName </h5>
+                                            <p class="main-profile-name-text">@user.Role.Title</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- main-profile-bio -->
+                                <div class="main-profile-work-list">
+                                    <div class="media">
+                                        <div class="media-logo bg-success-transparent text-success">
+                                            <i class="icon icon-phone"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <span>شماره تماس :</span>
+
+                                            <p>(@user.PhoneNumber)</p>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="media-logo bg-primary-transparent text-primary">
+                                            <i class="icon bi-envelope-fill"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <span>پست الکترونیکی :</span>
+                                            <p>(@user.Email)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- main-profile-overview -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Col -->
+            <!-- Col -->
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-4 main-content-label ">
+                                <b>
+                                    تغییر رمز عبور
+                                </b>
+                            </div>
+                            <div class="col-md-9 mb-4 main-content-label text-warning ">لطفا در نگهداری رمز عبور خود کوشا باشید🙏</div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9 mb-4 main-content-label text-danger ">رمز عبور خود را با دقت تغییر دهید ⚠️</div>
+                        </div>
+
+                        <form class="form-horizontal" action="@Url.Action("ChangePass", "Dashboard")" method="post">
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        @Html.LabelFor(model => model.OldPassword, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        @Html.EditorFor(model => model.OldPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "رمز عبور سابق" } })
+                                        @Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "رمز عبور جدید" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        @Html.LabelFor(model => model.RepPassword, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        @Html.EditorFor(model => model.RepPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "تکرار رمز عبور" } })
+                                        @Html.ValidationMessageFor(model => model.RepPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row card-footer">
+                                <div>
+                                    <input type="submit" value="تغییر رمز عبور" class="btn btn-primary " />
+                                </div>
+                                <div>
+                                    <a class="btn btn-danger" href="@Url.Action("Index","Dashboard","Admin")">
+                                        بازگشت
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- /Col -->
+        </div>
+        <!-- row closed -->
+
+
+    </div>
+    <!-- Container closed -->
+</div>

@@ -1,0 +1,14 @@
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\bin\Debug\net7.0\ViewModel.deps.json
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\bin\Debug\net7.0\ViewModel.dll
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\bin\Debug\net7.0\ViewModel.pdb
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\obj\Debug\net7.0\ViewModel.csproj.AssemblyReference.cache
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\obj\Debug\net7.0\ViewModel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\obj\Debug\net7.0\ViewModel.AssemblyInfoInputs.cache
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\obj\Debug\net7.0\ViewModel.AssemblyInfo.cs
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\obj\Debug\net7.0\ViewModel.csproj.CoreCompileInputs.cache
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\obj\Debug\net7.0\ViewModel.dll
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\obj\Debug\net7.0\refint\ViewModel.dll
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\obj\Debug\net7.0\ViewModel.pdb
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\obj\Debug\net7.0\ref\ViewModel.dll
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\bin\Debug\net7.0\ViewModel.runtimeconfig.json
+C:\Users\Mamma\source\repos\KimiaCompany\ViewModel\obj\Debug\net7.0\ViewModel.genruntimeconfig.cache

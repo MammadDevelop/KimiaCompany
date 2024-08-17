@@ -1,0 +1,175 @@
+﻿@model DomainClass.User
+
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+<div class="main-content app-content">
+
+    <!-- container -->
+    <div class="main-container container-fluid">
+
+
+        <!-- breadcrumb -->
+        <div class="breadcrumb-header justify-content-between">
+            <div>
+                <h4 class="content-title mb-2 mb-xl-0">ویرایش پروفایل</h4>
+            </div>
+            <div class="d-flex my-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Dashboard","Admin");">صفحه اصلی</a></li>
+                        <li class="breadcrumb-item active " aria-current="page">ویرایش پروفایل</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- /breadcrumb -->
+        <!-- row -->
+        <div class="row row-sm">
+            <!-- Col -->
+            <div class="col-xl-4">
+                <div class="card mg-b-20">
+                    <div class="card-body">
+                        <div class="ps-0">
+                            <div class="main-profile-overview">
+                                <div class="d-flex">
+                                    <div class="main-img-user profile-user"><img alt="" src="~/Areas/assets/ImageProfileUser/@Model.Image"></div>
+                                    <div class="d-flex justify-content-between mg-b-20">
+                                        <div class="mt-5 ms-3">
+                                            <h5 class="main-profile-name">@Model.FullName </h5>
+                                            <p class="main-profile-name-text">@Model.Role.Title</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- main-profile-bio -->
+                                <div class="main-profile-work-list">
+                                    <div class="media">
+                                        <div class="media-logo bg-success-transparent text-success">
+                                            <i class="icon icon-phone"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <span>شماره تماس :</span>
+
+                                            <p>(@Model.PhoneNumber)</p>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="media-logo bg-primary-transparent text-primary">
+                                            <i class="icon bi-envelope-fill"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <span>پست الکترونیکی :</span>
+                                            <p>(@Model.Email)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- main-profile-overview -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Col -->
+            <!-- Col -->
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-4 main-content-label ">
+                                <b>
+                                    ویرایش اطلاعات
+                                </b>
+                            </div>
+                            <div class="col-md-9 mb-4 main-content-label text-warning ">لطفا در نگهداری اطلاعات شخصی خود کوشا باشید🙏
+                            <br />
+                            <br/>
+                            تصویر پروفایل تصویری مناسب و با رعایت شئونات اسلامی باشد 😊
+                            </div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9 mb-4 main-content-label text-danger ">اطلاعات خود را با دقت تغییر دهید ⚠️
+                            <br />
+                            <br />
+                            تصویر پروفایل باید مربع باشد ⛔
+                            </div>
+                        </div>
+
+                        <form class="form-horizontal" action="@Url.Action("MyProfile", "Dashboard")" method="post" enctype="multipart/form-data">
+                            
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input class="form-control" type="file" id="FileUpload" name="FileUpload">
+                                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", placeholder = "نام و نام خانوادگی" } })
+                                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "پست الکترونیکی" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "form-label" })
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "شماره تماس" } })
+                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row card-footer">
+                                <div>
+                                    <input type="submit" value="ویرایش اطلاعات" class="btn btn-primary " />
+                                </div>
+                                <div>
+                                    <a class="btn btn-danger" href="@Url.Action("Index","Dashboard","Admin")">
+                                        بازگشت
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- /Col -->
+        </div>
+        <!-- row closed -->
+
+
+    </div>
+    <!-- Container closed -->
+</div>
